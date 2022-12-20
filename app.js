@@ -6,59 +6,73 @@ function getRandomNumber() {
   } while (numb < 58 || numb > 126 || numb === 92);
   return numb;
 }
+function generateRandomNumLimits(upperLimit, lowerLimit = 0) {
+  let numb = null;
+  do {
+    numb = Math.floor(Math.random() * upperLimit);
+  } while (lowerLimit > numb || numb > upperLimit);
+  return numb;
+}
 let coordinates = [
-  "0100 0001",
-  "0101 0100",
-  "1001 0010",
-  "0000 0011",
-  "0101 0011",
-  "0000 1001",
-  "0010 0011",
-  "1000 0111",
-  "0100 1000",
-  "0111 0001",
-  "0011 0000",
-  "1000 0011",
-  "0100 0000",
-  "0001 0110",
-  "0110 0011",
-  "0101 0101",
-  "0001 0101",
+  "0101001",
+  "0110110",
+  "01011100",
+  "011",
+  "0110101",
+  "01001",
+  "010111",
+  "01010111",
+  "0110000",
+  "01000111",
+  "011110",
+  "01010011",
+  "0101000",
+  "10000",
+  "0111111",
+  "0110111",
+  "01111",
 ];
-
 let coordinates2 = [
-  "4°1",
-  "5°4",
-  "9 2",
-  "0 3",
-  "5 3",
-  "0 9",
-  "2 3",
-  "8 7",
-  "4 8",
-  "7 1",
-  "3 0",
-  "8 3",
-  "4 0",
-  "1 6",
-  "6 3",
-  "5 5",
-  "1 5",
+  "41",
+  "54",
+  "92",
+  "03",
+  "53",
+  "09",
+  "23",
+  "87",
+  "48",
+  "71",
+  "30",
+  "83",
+  "40",
+  "16",
+  "63",
+  "55",
+  "15",
 ];
-let lenOfLine = 1400;
+let lenOfLine = 1987;
 let inputArray = [];
-let middArray = [];
+let lineArray = [];
 let inputString = "";
 for (let j = 0; j < coordinates.length; j++) {
   for (let i = 0; i < lenOfLine; i++) {
     inputString += String.fromCharCode(getRandomNumber());
   }
-  middArray = inputString.split("");
-  middArray.splice(Math.floor(Math.random() * lenOfLine), 0, coordinates[j]);
-  inputString = middArray.join("");
+  lineArray = inputString.split("");
+  //split the coordinates
+  let innerCoordinates = coordinates[j].split("");
+  let step = Math.floor(lenOfLine / innerCoordinates.length);
+  console.log(step);
+  for (let i = 0; i < innerCoordinates.length; i++) {
+    lineArray.splice(
+      generateRandomNumLimits(i * step + step, i * step),
+      0,
+      innerCoordinates[i]
+    );
+  }
+  inputString = lineArray.join("");
   inputArray.push(inputString + "\n");
   inputString = "";
 }
-console.log(inputArray);
-console.log(inputArray.join(""));
 preElement.innerText = inputArray.join("");
