@@ -1,4 +1,4 @@
-const preElement = document.getElementById("input-data");
+const preElement = document.getElementById("input-data-first");
 function getRandomNumber() {
   let numb = null;
   do {
@@ -63,7 +63,6 @@ for (let j = 0; j < coordinates.length; j++) {
   //split the coordinates
   let innerCoordinates = coordinates[j].split("");
   let step = Math.floor(lenOfLine / innerCoordinates.length);
-  console.log(step);
   for (let i = 0; i < innerCoordinates.length; i++) {
     lineArray.splice(
       generateRandomNumLimits(i * step + step, i * step),
