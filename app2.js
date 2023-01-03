@@ -28,7 +28,7 @@ which, each time a neck is severed, sprouts a head even fiercer and
 deverer than before. You are fighting that which is unfixed, mutating,
 indestructible."
 
-                                177`;
+066`;
 
 let alphabetUpperCase = [
   "A",
